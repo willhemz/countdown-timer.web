@@ -1,3 +1,3 @@
 import Error from "./Error";
-
-export {Error}
+import Navbar from "./Navbar";
+export {Error, Navbar}
