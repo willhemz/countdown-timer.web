@@ -39,11 +39,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cors())
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser:true,
-  useUnifiedTopology:true,
-  useCreateIndex: true
-})
+ConnectDB()
 
 // Routes imports
 const countDownRoutes = require('./routes/CountDownRoutes')
