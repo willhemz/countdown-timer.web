@@ -58,7 +58,7 @@ const router = express.Router()
 
 /**
  * @swagger
- * /api/v1/countdown:
+ * /add:
  *     post:
  *         summary: user creates countdown
  *         tags:
@@ -96,11 +96,17 @@ const router = express.Router()
  *                         schema:
  *                             $ref: '#/components/Error'
  
- * /api/v1/countdown/{title}:
+ * /{title}:
  *     get:
  *         summary: gets the countdown by the title
  *         tags:
  *             - countdowns
+ *         parameters:
+ *             - in: path
+ *               name: title
+ *               schema:
+ *                    type: string
+ *                    required: true
  *         responses:
  *             '200':
  *                description: Success

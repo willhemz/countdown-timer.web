@@ -1,5 +1,4 @@
 const CountDowns = require("../models/CountDownModel");
-const CountDown = require('../models/CountDownModel.js');
 
 
 /**
@@ -45,57 +44,59 @@ const createCountDown = async (req, res) => {
 };
 
 
-//Ruq23
-
-module.exports.welcome = (req, res) => {
-    console.log('up amd running')
+const welcome = (req, res) => {
     res.status(200).json('Welcome to CountDown')
 }
 
-module.exports.addCountdown = async(req, res) => {
-    const { title, description, days, hours, minutes, eventDate } = req.body
-    const countdown = new CountDown({ title, description, days, hours, minutes, eventDate })
-    await countdown.save()
-    console.log('Successfully Added CountDown')
-    console.log(countdown)
-    res.status(201).json({
-        msg: `You have successfully added a countdown for ${title}, ${description} in ${days} days, ${hours} hours, ${minutes} minutes`,
-      });
-}
+/**
+ * @desc view a countdown
+ * @route GET
+ * @route /api/v1/countdown/title
+ * @access Public
+ */
 
-module.exports.viewCountdown = async(req, res) => {
+const viewCountdown = async (req, res) => {
     title = req.params.title
-    const countdown = await CountDown.findOne({title: title})
-    if(countdown.length === 0){
-        console.log('Countdown does not exist!')
-        res.status(201).json('Countdown does not exist!')
+    const countdown = await CountDowns.findOne({title: title})
+    if(!countdown){
+        return res.status(404).json({
+            success: false,
+            message: "Countdown does not exist"
+        })
 
     }else {
-        var countDownDate = new Date(countdown.eventDate).getTime()
-        var x = setInterval(function() {
+        var countDownDate = new Date(Date.parse(countdown.createdAt))
             var now = new Date().getTime();
-            var distance = countDownDate - now
-    
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24))
-            var hours = Math.floor(distance % (1000 * 60 * 60 * 24)/ (1000 * 60 * 60))
-            var minutes = Math.floor(distance % (1000 * 60 * 60 ) / (1000 * 60))
-            var seconds = Math.floor(distance % (1000 * 60) / 1000)
+            var delta = Math.abs(countDownDate - now) / 1000;
+   
+            var days = Math.floor(delta / 86400);
+            delta -= days * 86400;
 
-            
-        console.log(countdown)
-        console.log(days)
-        console.log(hours)
-        console.log(minutes)
-        console.log(seconds)
+            var hours = Math.floor(delta / 3600) % 24;
+            delta -= hours * 3600;
 
-        res.status(201).json(`Your event ${countdown.title}, which is for ${countdown.description} is due in ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`)
-    
-        }, 1000,)
+            var minutes = Math.floor(delta / 60) % 60;
+            delta -= minutes * 60;
+
+            var seconds = delta % 60;  
+
+
+        return res.status(200).json(
+            {
+             title: countdown.title,
+             description: countdown.description,
+             days: days,
+             minutes: minutes,
+             hours: hours
+            }
+        )
 }
 }
 
 
 
 module.exports = {
-  createCountDown
+  createCountDown,
+  viewCountdown,
+  welcome
 };
