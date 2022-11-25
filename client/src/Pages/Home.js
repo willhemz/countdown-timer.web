@@ -9,8 +9,8 @@ const Home = () => {
         <p className='text-2xl font-medium'>
             With 3, 2, 1, you can easily create a countdown page. It is so easy that you can click the button below to begin.
         </p>
-        <div>
-            <Link className='btn' to='/getstarted'>Get Started</Link>
+        <div className='z-10'>
+            <Link className='btn font-semibold' to='/getstarted'>Get Started</Link>
         </div>
     </div>
     <div className='basis-[45%]'>
