@@ -1,4 +1,5 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const morgan = require('morgan')
@@ -38,6 +39,10 @@ dotenv.config();
 app.use(express.json());
 app.use(cors())
 
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser:true,
+  useUnifiedTopology:true
+})
 
 // Routes imports
 const countDownRoutes = require('./routes/CountDownRoutes')
@@ -47,9 +52,6 @@ const countDownRoutes = require('./routes/CountDownRoutes')
 // Routes configurations
 app.use('/', countDownRoutes)
 
-
-// Db connection
-connectDB()
 // morgan logging configuration
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
