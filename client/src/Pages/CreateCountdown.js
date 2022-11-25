@@ -34,8 +34,7 @@ const CreateCountdown = () => {
     }
 
     const postData = async(url,body = {}) =>{
-        const response = await
-        fetch(url, {
+        const response = await fetch(url, {
             method:'POST',
             body:JSON.stringify(body)
         })
@@ -73,8 +72,10 @@ const CreateCountdown = () => {
                     </div>
                 </div>
 
-                <div onClick={handleSubmit} className='mt-5' >
-                    <Link className='btn' to='/countdown'>Create Countdown</Link>
+                <div className='mt-5' >
+                    <Link className='btn' to='/countdown'>
+                        <button type='submit'>Create Countdown</button>
+                    </Link>
                 </div>
             </form>
             <div className='hidden sm:block basis-[45%]'>
