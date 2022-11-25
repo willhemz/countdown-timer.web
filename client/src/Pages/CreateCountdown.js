@@ -27,7 +27,7 @@ const CreateCountdown = () => {
         hours = +hours;
         minutes = +minutes
         const body = {title,description,days,hours,minutes}
-        const url = 'http://localhost:8000/api/v1/countdown';
+        const url = 'https://countdown-api.onrender.com/';
        postData(url,body).then((data) => {
         console.log(data)
        })
