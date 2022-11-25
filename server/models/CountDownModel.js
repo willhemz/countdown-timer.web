@@ -11,10 +11,17 @@ const countDownSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	expireAt:{
-        type: Date,
-        expires: '1d',
-        required:true
+	days:{
+        type: Number,
+        required: true
+    },
+    hours:{
+        type: Number,
+        required: true,
+    },
+    minutes:{
+        type: Number,
+        required: true,
     }
 }, {timestamps: true });
 
