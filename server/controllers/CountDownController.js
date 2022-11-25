@@ -85,9 +85,9 @@ const viewCountdown = async (req, res) => {
             {
              title: countdown.title,
              description: countdown.description,
-             days: days,
-             minutes: minutes,
-             hours: hours
+             days: countdown.days - days,
+             minutes: countdown.minutes - minutes,
+             hours: countdown.hours - hours
             }
         )
 }
