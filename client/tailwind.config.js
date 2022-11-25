@@ -10,7 +10,11 @@ module.exports = {
       }),
       width: () => ({
         '9/10': '90%'
-      })
+      }),
+      fontFamily: {
+        digital: ['digital', 'sans-serif'],
+        Quicksand: ['Quicksand', 'sans-serif']
+      }
     },
   },
   plugins: [],
