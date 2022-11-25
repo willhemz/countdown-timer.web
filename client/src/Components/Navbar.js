@@ -7,14 +7,14 @@ const Navbar = ({setShow}) => {
     <nav className='basis-2/5 font-semibold'>
         <ul className='w-full flex justify-between'>
             <li className=''>
-                <Link onClick={()=>setShow(false)} className='link' to='/'>Home</Link>
+                <Link onClick={()=>setShow(false)} className='' to='/'>Home</Link>
                 {/* <button onClick={()=>setShow(false)} className='text-3xl text-black avg:hidden'><IoClose /></button> */}
             </li>
             <li>
-                <Link onClick={()=>setShow(false)} className='link' to='/about'>About</Link>
+                <Link onClick={()=>setShow(false)} className='' to='/about'>About</Link>
             </li>
             <li>
-                <Link onClick={()=>setShow(false)} className='link' to='/contact'>Contact Us</Link>
+                <Link onClick={()=>setShow(false)} className='' to='/contact'>Contact Us</Link>
             </li>
             <li>
                 <Link onClick={()=>setShow(false)} className='btn' to='/getstarted'>Get Started</Link>
