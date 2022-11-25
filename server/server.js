@@ -31,7 +31,7 @@ const specs = swaggerJsDoc(options)
 const app = express()
 
 //setting up swagger doc
-app.use("/api/v1/docs", swaggerUI.serve, swaggerUI.setup(specs))
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(specs))
 
 
 dotenv.config();
@@ -45,7 +45,7 @@ const countDownRoutes = require('./routes/CountDownRoutes')
 
 
 // Routes configurations
-app.use('/api/v1/countdown', countDownRoutes)
+app.use('/', countDownRoutes)
 
 
 // Db connection
