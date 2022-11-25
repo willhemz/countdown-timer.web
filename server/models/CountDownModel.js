@@ -22,6 +22,10 @@ const countDownSchema = new Schema({
     minutes:{
         type: Number,
         required: true,
+    }, 
+    eventDate: {
+        type: String,
+        required: true
     }
 }, {timestamps: true });
 
