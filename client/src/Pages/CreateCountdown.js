@@ -20,8 +20,8 @@ const CreateCountdown = () => {
         })
 
     }
-    const handleSubmit = () => {
-        
+    const handleSubmit = (e) => {
+        e.preventDefault()
         let {title,description,days,hours,minutes} = state;
         days = +days;
         hours = +hours;
