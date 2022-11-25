@@ -10,7 +10,7 @@ const Home = () => {
             With 3, 2, 1, you can easily create a countdown page. It is so easy that you can click the button below to begin.
         </p>
         <div>
-            <Link className='btn' to='/getstarted'>Get Started</Link>
+            <Link className='btn cursor-pointer' to='/countdown'>Get Started</Link>
         </div>
     </div>
     <div className='basis-[45%]'>
