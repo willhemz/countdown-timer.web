@@ -17,7 +17,7 @@ const Navbar = ({setShow}) => {
                 <Link onClick={()=>setShow(false)} className='link' to='/contact'>Contact Us</Link>
             </li>
             <li>
-                <Link onClick={()=>setShow(false)} className='btn' to='/getstarted'>Get Started</Link>
+                <Link onClick={()=>setShow(false)} className='btn' to='/countdown'>Get Started</Link>
             </li>
         </ul>
     </nav>
