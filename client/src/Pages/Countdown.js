@@ -1,6 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 const Countdown = () => {
+    let [state, setState] = useState({
+        title:"",
+        description:"",
+        days:0,
+        hours:0,
+        minutes:0
+    });
+ 
   return <div className='h-96 flex justify-center items-center relative'>
     <div className='flex flex-col justify-center items-center h-1/2 gap-5'>
         <p className='font-Quicksand text-center sm:text-left text-[32px] sm:text-5xl font-bold'>Freelance task deadline</p>
