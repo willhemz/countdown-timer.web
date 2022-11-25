@@ -39,7 +39,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cors())
 
-ConnectDB()
+connectDB()
 
 // Routes imports
 const countDownRoutes = require('./routes/CountDownRoutes')
