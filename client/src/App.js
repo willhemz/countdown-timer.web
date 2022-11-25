@@ -1,19 +1,25 @@
 import { createBrowserRouter,  } from 'react-router-dom'
 import {Error} from './Components/index'
+import Layout from './Layout'
+import { Countdown, Home, CreateCountdown } from './Pages'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: '',
+    element: <Layout />,
     errorElement: <Error />,
     children: [
       {
         path: '/',
-        element: ''
+        element: <Home />
       },
       {
-        path: '',
-        element: ''
+        path: '/getstarted',
+        element: <CreateCountdown />
+      },
+      {
+        path: '/countdown',
+        element: <Countdown />
       }
     ]
   }

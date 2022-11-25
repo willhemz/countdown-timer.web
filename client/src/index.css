@@ -1,7 +1,22 @@
+@font-face {
+  font-family: 'digital';
+  src: url('../public/Assets/fonts/ds-digital/DS-DIGI.TTF');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   @apply m-0 box-border
+}
+
+#root {
+  @apply h-screen w-full sm:bg-slate-100
+}
+
+.btn {
+  @apply bg-[#1b3d7d] rounded-full py-2 px-4 text-white
 }
