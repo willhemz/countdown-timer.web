@@ -19,7 +19,7 @@ const options = {
     servers: [
       {
         //update to production url
-        url: 'http://localhost:8000'
+        url: 'https://countdown-api.onrender.com'
       }
     ]
   },
