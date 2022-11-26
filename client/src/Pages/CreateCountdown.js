@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 
 const CreateCountdown = () => {
+    let [pending, setIsPending] = useState(false)
     let [state, setState] = useState({
         title:"",
         description:"",
@@ -18,7 +19,6 @@ const CreateCountdown = () => {
             ...state,
             [name]:value
         })
-
     }
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -27,18 +27,19 @@ const CreateCountdown = () => {
         hours = +hours;
         minutes = +minutes
         const body = {title,description,days,hours,minutes}
-        const url = 'https://countdown-api.onrender.com/';
-       postData(url,body).then((data) => {
-        console.log(data)
-       })
-    }
-
-    const postData = async(url,body = {}) =>{
-        const response = await fetch(url, {
-            method:'POST',
-            body:JSON.stringify(body)
+        const url = 'https://countdown-api.onrender.com/add';
+        setIsPending(true)
+        fetch(url, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+        }).then(()=>{
+                console.log("successfully added to endpoint")
+                setIsPending(false)
+            }).catch(error => {
+            console.log("not successful")
+            setIsPending(true)
         })
-        return response.json();
     }
   return <div className='flex justify-center items-center relative font-Quicksand text-#222222'>
     <div className='z-10'>
@@ -48,33 +49,33 @@ const CreateCountdown = () => {
             </p>
         </div>
         <div className='flex items-center'>
-            <form className='basis-full sm:basis-[55%] text-base flex flex-col gap-5' action="" onSubmit={handleSubmit}>
+            <form className='basis-full sm:basis-[55%] text-base flex flex-col gap-5' method='post' onSubmit={handleSubmit}>
                 <div className='flex flex-col gap-1'>
                     <label className='font-medium text-[#1b3d7d]' htmlFor="title">Title</label>
-                    <input className='bg-[#fdfdfd] border-[0.4px] border-[#1b3d7d] rounded-[10px] py-1 px-2' type="text" onChange={handleInputChange} name='title' placeholder='The title of your countdown page.' />
+                    <input className='bg-[#fdfdfd] border-[0.4px] border-[#1b3d7d] rounded-[10px] py-1 px-2' type="text" onMouseLeave={handleInputChange} onKeyUp={handleInputChange} onChange={handleInputChange} name='title' placeholder='The title of your countdown page.' />
                 </div>
                 <div className='flex flex-col gap-1'>
                     <label className='font-medium text-[#1b3d7d]' htmlFor="title">Description</label>
-                    <textarea rows='5' className='bg-[#fdfdfd] border-[0.4px] border-[#1b3d7d] rounded-[10px] py-1 px-2 resize-none' onChange={handleInputChange} type="text" name='description' placeholder='The description of your countdown page.' />
+                    <textarea rows='5' className='bg-[#fdfdfd] border-[0.4px] border-[#1b3d7d] rounded-[10px] py-1 px-2 resize-none' onMouseLeave={handleInputChange} onKeyUp={handleInputChange} onChange={handleInputChange} type="text" name='description' placeholder='The description of your countdown page.' />
                 </div>
                 <div className='flex gap-5'>
                     <div className='flex flex-col gap-1 text-center'>
                         <label className='font-medium text-[#1b3d7d]' htmlFor="title">Days</label>
-                        <input className='bg-[#fdfdfd] border-[0.4px] w-[68px] border-[#1b3d7d] rounded-[10px] py-1 px-2' onChange={handleInputChange} type="text" name='days' placeholder='Days' />
+                        <input className='bg-[#fdfdfd] border-[0.4px] w-[68px] border-[#1b3d7d] rounded-[10px] py-1 px-2' onMouseLeave={handleInputChange} onKeyUp={handleInputChange} onChange={handleInputChange} type='number' name='days' placeholder='Days' />
                     </div>
                     <div className='flex flex-col gap-1 text-center'>
                         <label className='font-medium text-[#1b3d7d]' htmlFor="title">Hours</label>
-                        <input className='bg-[#fdfdfd] border-[0.4px] w-[68px] border-[#1b3d7d] rounded-[10px] py-1 px-2' onChange={handleInputChange} type="text" name='hours' placeholder='Hours' />
+                        <input className='bg-[#fdfdfd] border-[0.4px] w-[68px] border-[#1b3d7d] rounded-[10px] py-1 px-2' onMouseLeave={handleInputChange} onKeyUp={handleInputChange} onChange={handleInputChange} type="number" min='0' max='24' name='hours' placeholder='Hours' />
                     </div>
                     <div className='flex flex-col gap-1 text-center'>
                         <label className='font-medium text-[#1b3d7d]' htmlFor="title">Minutes</label>
-                        <input className='bg-[#fdfdfd] border-[0.4px] w-[68px] border-[#1b3d7d] rounded-[10px] py-1 px-2' type="text" placeholder='Minutes' name='minutes' />
+                        <input className='bg-[#fdfdfd] border-[0.4px] w-[68px] border-[#1b3d7d] rounded-[10px] py-1 px-2' type="number" min='0' max='59' onMouseLeave={handleInputChange} onKeyUp={handleInputChange} onChange={handleInputChange} placeholder='Minutes' name='minutes' />
                     </div>
                 </div>
 
-                <div className='mt-5' >
+                <div onClick={handleSubmit} type='submit' className='mt-5' >
                     <Link className='btn' to='/countdown'>
-                        <button type='submit'>Create Countdown</button>
+                        Create Countdown
                     </Link>
                 </div>
             </form>
