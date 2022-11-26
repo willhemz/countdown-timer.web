@@ -1,7 +1,7 @@
 import React,{useCallback, useEffect, useState} from 'react'
 import { useGenContext } from './CreateCountdown';
 
-const Countdown = ({id}) => {
+const Countdown = () => {
     let url = `https://countdown-api.onrender.com/`
     const [loading, setLoading] = useState(false)
     let [state, setState] = useState({

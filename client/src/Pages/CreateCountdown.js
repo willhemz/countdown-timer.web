@@ -2,8 +2,6 @@ import React, {Children, useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
 import Countdown from './Countdown'
 
-const GlobalContext = React.createContext()
-
 const CreateCountdown = ({children}) => {
     const [pending, setIsPending] = useState(false)
     const [id, setId] = useState('')
@@ -48,16 +46,16 @@ const CreateCountdown = ({children}) => {
             setIsPending(true)
         })
     }
-  return <GlobalContext.Provider value={id}>
-    <div className='flex justify-center items-center relative font-Quicksand text-#222222'>
+  return <>
+    <div className='flex justify-center items-center relative font-Quicksand text-#222222 sm:-mt-3'>
         <div className='z-10'>
             <div className='mb-10 text-base sm:text-[20px]'>
                 <p>
                     To create a countdown page, write the title of the page, write the description, write the number of days, hours and minutes left, next you click on the create button. Your countdown page is ready.
                 </p>
             </div>
-            <div className='flex items-center'>
-                <form className='basis-full sm:basis-[55%] text-base flex flex-col gap-5' method='post' onSubmit={handleSubmit}>
+            <div className='flex items-center sm:-mt-5'>
+                <form className='basis-full sm:basis-[55%] text-base flex flex-col gap-5 sm:gap-3' method='post' onSubmit={handleSubmit}>
                     <div className='flex flex-col gap-1'>
                         <label className='font-medium text-[#1b3d7d]' htmlFor="title">Title</label>
                         <input className='bg-[#fdfdfd] border-[0.4px] border-[#1b3d7d] rounded-[10px] py-1 px-2' type="text" onMouseLeave={handleInputChange} onKeyUp={handleInputChange} onChange={handleInputChange} name='title' placeholder='The title of your countdown page.' />
@@ -100,10 +98,7 @@ const CreateCountdown = ({children}) => {
             <img className='opacity-30' src="./Assets/images/Hourglass.png" alt="" />
         </div>
     </div>
-  </GlobalContext.Provider> 
+  </> 
 }
 
 export default CreateCountdown 
-export const useGenContext = () => {
-    return useContext(GlobalContext)
-}
