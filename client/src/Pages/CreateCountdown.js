@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 const CreateCountdown = () => {
     let [state, setState] = useState({
-        title:"",
-        description:"",
-        days:0,
-        hours:0,
-        minutes:0
+        "title":"",
+        "description":"",
+        "days":0,
+        "hours":0,
+        "minutes":0
     });
 
     const handleInputChange = (event) =>{
@@ -26,8 +26,8 @@ const CreateCountdown = () => {
         days = +days;
         hours = +hours;
         minutes = +minutes
-        const body = {title,description,days,hours,minutes}
-        const url = 'https://countdown-api.onrender.com/';
+        const body = {"title":title,"description":description,"days":days,"hours":hours,"minutes":minutes}
+        const url = ' https://countdown-api.onrender.com/add';
        postData(url,body).then((data) => {
         console.log(data)
        })
@@ -74,7 +74,7 @@ const CreateCountdown = () => {
 
                 <div className='mt-5' >
                     <Link className='btn' to='/countdown'>
-                        <button type='submit'>Create Countdown</button>
+                        <button type='submit' onClick={handleSubmit}>Create Countdown</button>
                     </Link>
                 </div>
             </form>

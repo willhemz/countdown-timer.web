@@ -8,8 +8,45 @@ const Countdown = () => {
         hours:0,
         minutes:0
     });
+
+    const handleInputChange = (event) =>{
+        const target = event.target;
+        const value = target.type === 'checkbox'? target.checked : target.value;
+        const name = target.name;
+        setState({
+            ...state,
+            [name]:value
+        })
+
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        let {title} = state;
+        const url = `https://countdown-gen.brandonarmand.repl.co/${title}`;
+       getData(url,title).then((data) => {
+        console.log(data)
+       })
+    }
+
+    const getData = async(url) =>{
+        const response = await fetch(url, {
+            method:'GET'
+        })
+        return response.json();
+    }
  
   return <div className='h-96 flex justify-center items-center relative'>
+     <form className='basis-full sm:basis-[55%] text-base flex flex-col gap-5' action="" onSubmit={handleSubmit}>
+                <div className='flex flex-col gap-1'>
+                    <label className='font-medium text-[#1b3d7d]' htmlFor="title">Title</label>
+                    <input className='bg-[#fdfdfd] border-[0.4px] border-[#1b3d7d] rounded-[10px] py-1 px-2' type="text" onChange={handleInputChange} name='title' placeholder='The title of your countdown page.' />
+                </div>
+                <div className='mt-5' >
+                    <span className='btn'>
+                        <button type='submit'>View Countdown</button>
+                    </span>
+                </div>
+                </form>
     <div className='flex flex-col justify-center items-center h-1/2 gap-5'>
         <p className='font-Quicksand text-center sm:text-left text-[32px] sm:text-5xl font-bold'>Freelance task deadline</p>
 
