@@ -68,6 +68,8 @@ const viewCountdown = async (req, res) => {
         var countDownDate = new Date(Date.parse(countdown.createdAt))
             var now = new Date().getTime();
             var delta = Math.abs(countDownDate - now) / 1000;
+            var time = (countdown.days * 1440*60) + (countdown.hours * 60 * 60) + (countdown.minutes * 60)
+            delta = time - delta
    
             var days = Math.floor(delta / 86400);
             delta -= days * 86400;
@@ -85,9 +87,9 @@ const viewCountdown = async (req, res) => {
             {
              title: countdown.title,
              description: countdown.description,
-             days: countdown.days - days,
-             minutes: countdown.minutes - minutes,
-             hours: countdown.hours - hours
+             days: days,
+             minutes: minutes,
+             hours: hours
             }
         )
 }
