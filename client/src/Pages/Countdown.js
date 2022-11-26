@@ -39,6 +39,7 @@ const Countdown = () => {
 console.log(e)
     }
     const handleSubmit = async(e) => {
+        e.preventDefault()
         url = `${url}${state.title}`
 console.log('form',e);
 try {
@@ -57,15 +58,13 @@ catch(error) {
  
   return <div>
         <div className='block'>
-         <form className='basis-full sm:basis-[55%] text-base flex flex-col gap-5'>
+         <form onSubmit={handleSubmit} className='basis-full sm:basis-[55%] text-base flex flex-col gap-5'>
                 <div className='flex flex-col gap-1'>
                     <label className='font-medium text-[#1b3d7d]' htmlFor="title">Title</label>
                     <input className='bg-[#fdfdfd] border-[0.4px] border-[#1b3d7d] rounded-[10px] py-1 px-2' type="text" onChange={handleInputChange} name='title' placeholder='The title of your countdown page.' />
                 </div>
                 <div className='mt-5' >
-                    <span className='btn'>
-                        <button type='button' onClick={handleSubmit}>View Countdown</button>
-                    </span>
+                        <button className='btn countdown_btn' type='submit'>View Countdown</button>
                 </div>
                 </form>  
     </div>
@@ -93,14 +92,14 @@ catch(error) {
     </div>
     </div>
 
- 
+
     <div className='hidden sm:block'>
-        <img className='w-[338.21px] h-[485px] absolute -top-10 right-0' src="./Assets/images/bg1.png" alt="" />
-        <img className='w-[338px] h-[485px] absolute -top-10 left-0' src="./Assets/images/bg2.png" alt="" />
+        <img className='w-[338.21px] h-[485px] absolute -top-10 right-0 z_index_1' src="./Assets/images/bg1.png" alt="" />
+        <img className='w-[338px] h-[485px] absolute -top-10 left-0 z_index_1' src="./Assets/images/bg2.png" alt="" />
     </div>
     <div className="w-full absolute -bottom-40 flex justify-end sm:hidden">
         <img className='opacity-30' src="./Assets/images/Hourglass.png" alt="" />
-    </div>
+    </div> 
   </div>
 }
 
