@@ -6,11 +6,11 @@ const CreateCountdown = ({children}) => {
     const [pending, setIsPending] = useState(false)
     const [id, setId] = useState('')
     let [state, setState] = useState({
-        "title":"",
-        "description":"",
-        "days":0,
-        "hours":0,
-        "minutes":0
+        title:"",
+        description:"",
+        days:0,
+        hours:0,
+        minutes:0
     });
 
     const handleInputChange = (event) =>{
