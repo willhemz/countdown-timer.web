@@ -14,6 +14,10 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
+        path: '/:title',
+        element: <Countdown/>
+      },
+      {
         path: '/getstarted',
         element: <CreateCountdown />
       },
