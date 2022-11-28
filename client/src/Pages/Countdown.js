@@ -33,10 +33,10 @@ const Countdown = () => {
     },[url])
 
     useEffect(()=>{
-        const timer = setTimeout(() => {
+        const timer = setInterval(() => {
             fetchData()
           }, 1000);
-          return () => clearTimeout(timer);
+          return () => clearInterval(timer);
        
     },[url,fetchData])
 
