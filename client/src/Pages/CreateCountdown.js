@@ -80,7 +80,7 @@ const CreateCountdown = ({children}) => {
                     </div>
 
                     <div onClick={handleSubmit} type='submit' className='mt-5' >
-                        <Link className='btn' to={`/:${state.title}`}>
+                        <Link className='btn' to={`/${state.title}`}>
                             Create Countdown
                         </Link>
                     </div>
