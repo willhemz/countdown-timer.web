@@ -15,6 +15,8 @@ const Countdown = () => {
         minutes:0
     });
 
+    
+
     const fetchData = useCallback(async() => {
         try {
             const response = await fetch(url)
@@ -31,7 +33,11 @@ const Countdown = () => {
     },[url])
 
     useEffect(()=>{
-        fetchData()
+        const timer = setTimeout(() => {
+            fetchData()
+          }, 1000);
+          return () => clearTimeout(timer);
+       
     },[url,fetchData])
 
    const handleInputChange = (e) => {
