@@ -1,4 +1,5 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const morgan = require('morgan')
@@ -18,7 +19,7 @@ const options = {
     servers: [
       {
         //update to production url
-        url: 'http://localhost:8000'
+        url: 'https://countdown-api.onrender.com'
       }
     ]
   },
@@ -38,6 +39,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cors())
 
+connectDB()
 
 // Routes imports
 const countDownRoutes = require('./routes/CountDownRoutes')
@@ -47,9 +49,6 @@ const countDownRoutes = require('./routes/CountDownRoutes')
 // Routes configurations
 app.use('/', countDownRoutes)
 
-
-// Db connection
-connectDB()
 // morgan logging configuration
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
